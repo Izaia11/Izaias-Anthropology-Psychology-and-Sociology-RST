@@ -6,7 +6,7 @@
 <title>Kanye West RST - By Izaia Freyer</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
 <style>
-  /* Background pattern on body sides */
+  /* Reset & base */
   body {
     margin: 0;
     font-family: 'Roboto Slab', serif;
@@ -18,21 +18,25 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    z-index: 1;
   }
-  body::before, body::after {
+  /* Side patterning */
+  body::before,
+  body::after {
     content: "";
     position: fixed;
     top: 0;
-    width: 150px;
-    height: 100%;
-    background: repeating-linear-gradient(
-      45deg,
-      #004080,
-      #004080 10px,
-      #0057b7 10px,
-      #0057b7 20px
-    );
-    z-index: -1;
+    width: 80px;
+    height: 100vh;
+    background:
+      linear-gradient(45deg, #004080 25%, transparent 25%),
+      linear-gradient(-45deg, #004080 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #0057b7 75%),
+      linear-gradient(-45deg, transparent 75%, #0057b7 75%);
+    background-size: 20px 20px;
+    background-repeat: repeat;
+    z-index: 0;
+    opacity: 0.3;
   }
   body::before {
     left: 0;
@@ -40,6 +44,48 @@
   body::after {
     right: 0;
   }
+
+  /* Navigation bar */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #004080cc;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 12px 12px;
+    z-index: 1000;
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  nav a {
+    color: #cce0ff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: #ffcc00;
+    outline: none;
+  }
+
+  /* Add spacing so content isn't hidden behind nav */
+  body > *:not(nav) {
+    padding-top: 4rem;
+  }
+
+  /* Headings */
   h1, h2, h3 {
     font-weight: 700;
     color: #003366;
@@ -47,17 +93,8 @@
   h1 {
     font-size: 2.8rem;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 0.3rem;
-  }
-  /* Subtitle */
-  .subtitle {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #004080;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: 500;
+    margin-top: 1.5rem;
+    margin-bottom: 0.2rem;
   }
   h2 {
     font-size: 2rem;
@@ -71,6 +108,23 @@
     margin-top: 1.8rem;
     margin-bottom: 0.8rem;
   }
+  /* Subtitle & author */
+  .subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #0057b7;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .author {
+    text-align: center;
+    font-size: 1rem;
+    color: #004080;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  /* Text */
   p, ul {
     font-size: 1.1rem;
     margin-bottom: 1rem;
@@ -95,69 +149,30 @@
     font-size: 0.9rem;
     color: #004080;
   }
-  /* Smooth scroll for anchor links */
+
+  /* Smooth scroll */
   html {
     scroll-behavior: smooth;
-  }
-  /* Navigation buttons */
-  nav {
-    text-align: center;
-    margin: 1rem 0 2rem 0;
-  }
-  nav button {
-    background: #0057b7;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin: 0 0.4rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: 'Roboto Slab', serif;
-    transition: background 0.3s ease;
-  }
-  nav button:hover {
-    background: #003366;
-  }
-  /* Visuals styling */
-  .banner-image {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-  }
-  .section-image {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
 </style>
 </head>
 <body>
 
-<h1>Kanye West</h1>
-<p class="subtitle">By Izaia Freyer</p>
-<p class="subtitle">For my Psychology, Sociology, and Anthropology RST</p>
-
-<!-- Banner image below title -->
-<img class="banner-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kanye_West_at_the_2016_Brit_Awards_2.jpg/1200px-Kanye_West_at_the_2016_Brit_Awards_2.jpg" alt="Kanye West at 2016 Brit Awards" />
-
 <nav>
-  <button onclick="document.getElementById('anthropology').scrollIntoView()">Anthropology</button>
-  <button onclick="document.getElementById('psychology').scrollIntoView()">Psychology</button>
-  <button onclick="document.getElementById('sociology').scrollIntoView()">Sociology</button>
-  <button onclick="document.getElementById('sources').scrollIntoView()">Sources</button>
+  <ul>
+    <li><a href="#anthropology">Anthropology</a></li>
+    <li><a href="#psychology">Psychology</a></li>
+    <li><a href="#sociology">Sociology</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
 </nav>
+
+<h1>Kanye West</h1>
+<p class="author">by Izaia Freyer</p>
+<p class="subtitle">Psychology, Sociology, and Anthropology RST</p>
 
 <section id="anthropology">
   <h2>Anthropology</h2>
-  <!-- Section image -->
-  <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/6/62/Grammy_Award_icon.svg" alt="Grammy Award Icon" />
-  
   <p><strong>Examine the cultural background, traditions, rituals, or belief systems that influenced the figure. Apply the following concepts and explain how each one connects to your figure.</strong></p>
 
   <h3>Cultural practices (What is this figure's culture and how do they practice it?)</h3>
@@ -179,15 +194,12 @@
   <p><strong>Lyrics and persona:</strong> Some say Kanye is a lyrical genius, his lyrics are layered with slang, metaphor, religious references, and political critique, putting him within a tradition of hip-hop as a form of resistance and storytelling.</p>
   <p><strong>Public Speech:</strong> His interviews and public statements often appear erratic or unconventional. This has been read both as a symptom of mental health struggles and as a challenge to normative public discourse, especially around race, celebrity, and autonomy.</p>
 
-  <p><strong>Summary</strong></p>
+  <h3>Summary</h3>
   <p>Kanye West shows how an individual can both reflect and shape culture through music, language, family structures, and belief systems. His life and work serve as case studies of how modern identity is formed at the crossing of traditions, innovation, and controversy.</p>
 </section>
 
 <section id="psychology">
   <h2>Psychology</h2>
-  <!-- Section image -->
-  <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Brain_icon.svg" alt="Brain Icon" />
-  
   <p><strong>Analyze internal and external influences on the individual’s behaviour, personality and decision-making. Analyze the before and after Kanye West's mental breakdown and state notable changes.</strong></p>
   <p><strong>Apply some psychological theories such as Freud's psychoanalysis, Jung's analytic psychology, behaviourism, humanism, and developmental psychology.</strong></p>
   <p><strong>Consider if the figure may suffer from any of the psychological disorders as listed in the DSM-5-TR (whether confirmed or based on your observations)</strong></p>
@@ -198,89 +210,92 @@
   <h3>Key life-altering events</h3>
   <ul>
     <li>2007: Death of his mother, Donda West</li>
-    <li>2016: Public breakdown episodes, including hospitalization</li>
-    <li>Marriage and subsequent divorce with Kim Kardashian</li>
+    <li>2016: Hospitalized for a psychiatric emergency (“temporary psychosis due to sleep deprivation and dehydration”).</li>
+    <li>Post-2016: Exhibits increasingly erratic behaviour, including presidential run, antisemitic comments, inappropriate Twitter statements, and public conflicts (Bad choices of Free Will).</li>
   </ul>
 
-  <h3>Before Breakdown</h3>
-  <p>He was widely celebrated for his creative genius, although some noticed erratic behaviour early on.</p>
+  <h3>Internal vs External Influences</h3>
+  <p><strong>Internal Influences:</strong></p>
+  <ul>
+    <li>Biological factors: Kanye’s bipolar diagnosis suggests a genetic or neurochemical predisposition.</li>
+    <li>Personality: Traits of high openness, narcissism, creativity, and impulsivity.</li>
+    <li>Trauma/Grief: The death of his mother was a profound internal emotional loss. (Some say this was the first motion to get the stone rolling). He also had a near-death experience after being in a bad car accident.</li>
+  </ul>
+  <p><strong>External Influences:</strong></p>
+  <ul>
+    <li>Fame and Pressure: Constant public scrutiny, media distortion, and celebrity status.</li>
+    <li>Relationships: High-profile relationships (Like Kim Kardashian) and public breakups.</li>
+    <li>Social Media: Allows impulsive and unfiltered expressions, sometimes reinforcing instability.</li>
+    <li>Cultural factors: Societal stigmas around Black men’s mental health and masculinity.</li>
+  </ul>
 
-  <h3>After Breakdown</h3>
-  <p>Kanye's behaviour became more unpredictable publicly, including controversial statements and erratic interviews.</p>
+  <h3>Before vs After his Mental Breakdown</h3>
+  <p><strong>Before (Pre 2016)</strong></p>
+  <ul>
+    <li>Creative Genius: Albums like “The College Dropout”, “My Beautiful Dark Twisted Fantasy”, and “Graduation” showcased his ability to embrace and truly make beautiful and meaningful music.</li>
+    <li>Cocky but Controlled: Known for his ego and confidence, but often framed within his artistry.</li>
+    <li>Emotional Depth: His grief post-Donda’s death was present, but mostly artistically challenged. He felt like he found peace in it, turned to god, and embraced the beauty of life and the challenges that it will throw in your face.</li>
+    <li>Pre 2016 Kanye was a force to be reckoned with, most young individuals knew about him and a lot were very influenced by him. I think he was one of the most influential people in the music industry of the 21st century.</li>
+  </ul>
+  <p><strong>After (Post-2016)</strong></p>
+  <ul>
+    <li>Erratic Behaviour: Speech patterns became more disjointed and confused. Public outbursts and controversial statements increased.</li>
+    <li>Polarizing figure: His support of controversial figures (e.g., Donald Trump, and statements supporting Hitler) alienated much of his fanbase.</li>
+    <li>Isolation: His withdrawal from music at certain points and focus on political or religious agendas.</li>
+  </ul>
 
-  <h3>Freud’s psychoanalysis</h3>
-  <p>The tension between Kanye’s id (impulses for creativity and fame) and superego (moral/ethical considerations influenced by faith and family) is evident. His ego attempts to mediate this but struggles under stress.</p>
+  <h3>Psychological Theories</h3>
+  <ul>
+    <li><strong>Freud’s Psychoanalysis:</strong> Kanye’s ego and superego struggle publicly, with the id driving impulsive outbursts, and the superego conflicted by societal norms.</li>
+    <li><strong>Jung’s Analytic Psychology:</strong> The “shadow” aspect is visible in Kanye’s acceptance of his flaws and darkness in public persona, along with his “self” seeking wholeness.</li>
+    <li><strong>Behaviourism:</strong> Reinforcement through social media praise and controversy drives some of his behaviour.</li>
+    <li><strong>Humanism:</strong> Kanye’s pursuit of self-actualization is seen in his continuous innovation, despite setbacks.</li>
+    <li><strong>Developmental Psychology:</strong> Traumatic losses and early life experiences shaped his adult personality and coping mechanisms.</li>
+  </ul>
 
-  <h3>Jung’s analytic psychology</h3>
-  <p>Kanye exhibits archetypes like the “Rebel” and “Creator.” His personal shadow side (struggles, mental illness) is a significant aspect of his public persona.</p>
-
-  <h3>Behaviorism</h3>
-  <p>Reinforcement from fan admiration and celebrity status may encourage continued outspokenness despite social backlash.</p>
-
-  <h3>Humanism</h3>
-  <p>Kanye’s pursuit of self-actualization is evident in his artistic and entrepreneurial ventures, and his public struggles can be seen as a journey towards personal growth.</p>
-
-  <h3>Developmental psychology</h3>
-  <p>Loss of his mother during early adulthood likely disrupted normal development stages, causing long-term effects.</p>
-
-  <h3>Mental health disorders</h3>
-  <p>Kanye’s symptoms align with bipolar disorder as described in the DSM-5-TR, including mood swings, grandiosity, and impulsive behavior.</p>
+  <h3>Mental Health Diagnosis</h3>
+  <p>While Kanye West’s bipolar disorder diagnosis is public, some behaviours could also indicate symptoms of other disorders or acute episodes, such as psychosis or delusional thinking, especially during manic phases.</p>
 </section>
 
 <section id="sociology">
   <h2>Sociology</h2>
-  <!-- Section image -->
-  <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Sociology_icon.svg/1200px-Sociology_icon.svg.png" alt="Sociology Icon" />
-  
-  <p><strong>Analyze the figure using sociological theories such as Functionalism, Conflict Theory, Symbolic Interactionism, and the Social Construction of Reality.</strong></p>
+  <p><strong>Analyze the social environment, groups, and institutions that influenced the figure.</strong></p>
 
-  <h3>Functionalism</h3>
-  <p>Kanye West serves as a cultural institution that contributes to social cohesion through music, fashion, and public discourse. His work helps reinforce shared norms and values in society, especially around creativity and fame.</p>
+  <h3>Agents of Socialization</h3>
+  <p>Kanye West was heavily influenced by his family, especially his mother, Donda West, who fostered his creativity and confidence (Rolling Stone, 2007). His peers in Chicago’s hip-hop scene helped shape his musical direction, while the media played a significant role in constructing his public image. His education (dropping out of college) became central to his identity as an artist. More recently, religion has become a major force through his Sunday Service gatherings and gospel albums.</p>
 
-  <h3>Conflict Theory</h3>
-  <p>His career highlights tensions around class, race, and power. Kanye’s outspoken critiques of the music industry, media, and society point to systemic inequalities and struggles over cultural capital.</p>
+  <h3>Sociological Concepts</h3>
+  <p><strong>Norms:</strong> Kanye both follows and breaks norms in music and fashion, often challenging societal expectations (BBC News, 2009).</p>
 
-  <h3>Symbolic Interactionism</h3>
-  <p>Kanye’s identity is constantly negotiated through interactions with fans, media, and peers. His use of language, fashion, and public behavior construct his social self.</p>
-
-  <h3>Social Construction of Reality</h3>
-  <p>The public narrative around Kanye is shaped by media representations and social expectations, showing how reality is co-created by multiple actors in society.</p>
-
-  <p><strong>Summary:</strong> Kanye West’s life and work demonstrate the complex interplay between individual agency and social structure.</p>
+  <h3>Summary</h3>
+  <p>Kanye West’s life is a complex interplay of social structures, norms, and individual agency, reflecting broader patterns in contemporary society related to fame, mental health, race, and media.</p>
 </section>
 
-<section id="sources">
-  <h2>Sources</h2>
+<section id="sources" class="citations">
+  <h2>Sources (APA Format)</h2>
   <ul>
-    <li>Freud, S. (1923). The ego and the id. In The standard edition of the complete psychological works of Sigmund Freud.</li>
-    <li>Jung, C. G. (1959). Aion: Researches into the phenomenology of the self. Princeton University Press.</li>
-    <li>Skinner, B. F. (1953). Science and human behaviour. Free Press.</li>
-    <li>Maslow, A. H. (1943). A theory of human motivation. Psychological Review, 50(4), 370–396. https://doi.org/10.1037/h0054346</li>
-    <li>Rogers, C. R. (1961). On becoming a person: A therapist’s view of psychotherapy. Houghton Mifflin.</li>
-    <li>Erikson, E. H. (1950). Childhood and society. W. W. Norton & Company.</li>
-    <li>Bowlby, J. (1988). A secure base: Parent-child attachment and healthy human development. Basic Books.</li>
+    <li>Freud, S. (1923). The ego and the id. In <i>The standard edition of the complete psychological works of Sigmund Freud.</i></li>
+    <li>Jung, C. G. (1959). <i>Aion: Researches into the phenomenology of the self.</i> Princeton University Press.</li>
+    <li>Skinner, B. F. (1953). <i>Science and human behaviour.</i> Free Press.</li>
+    <li>Maslow, A. H. (1943). A theory of human motivation. <i>Psychological Review, 50</i>(4), 370–396. https://doi.org/10.1037/h0054346</li>
+    <li>Rogers, C. R. (1961). <i>On becoming a person: A therapist’s view of psychotherapy.</i> Houghton Mifflin.</li>
+    <li>Erikson, E. H. (1950). <i>Childhood and society.</i> W. W. Norton & Company.</li>
+    <li>Bowlby, J. (1988). <i>A secure base: Parent-child attachment and healthy human development.</i> Basic Books.</li>
     <li>BBC News. (2009, September 14). Kanye West ruins Taylor Swift's MTV Awards moment. https://news.bbc.co.uk/2/hi/entertainment/8254468.stm</li>
-    <li>Caramanica, J. (2019, October 25). Kanye West is born again. The New York Times. https://www.nytimes.com/2019/10/25/arts/music/kanye-west-jesus-is-king-review.html</li>
-    <li>Greenburg, Z. O. (2020, April 24). Kanye West is now officially a billionaire. Forbes. https://www.forbes.com/sites/zackomalleygreenburg/2020/04/24/kanye-west-is-now-officially-a-billionaire/</li>
-    <li>Hiatt, B. (2007, November 27). Kanye West: The genius and the tragedy. Rolling Stone. https://www.rollingstone.com/music/music-news/kanye-west-the-genius-and-the-tragedy-244089/</li>
-    <li>Holmes, D. (2020, May 13). Kanye West’s fashion influence is bigger than you think. GQ Magazine. https://www.gq.com/story/kanye-west-fashion-influence</li>
-    <li>Abdurraqib, H. (2022). A little devil in America: Notes in praise of Black performance. Random House.</li>
-    <li>Netflix. (2022). Jeen-yuhs: A Kanye trilogy [Documentary series]. Creative Control; TIME Studios.</li>
-    <li>Charlemagne Tha God. (2018). Interview with Kanye West [Radio interview]. The Breakfast Club. https://www.youtube.com/watch?v=zxwfDlhJIpw</li>
-    <li>The New York Times. (2019). Kanye West opens up about bipolar disorder. The New York Times. https://www.nytimes.com/2019/10/25/arts/music/kanye-west-jesus-is-king-review.html</li>
-    <li>Rolling Stone. (2022). Kanye West’s controversies: A complete timeline. Rolling Stone. https://www.rollingstone.com/music/music-news/kanye-west-controversies-timeline-1234631427/</li>
-    <li>Billboard Staff. (2022, October 27). Kanye West’s hate speech consequences: A timeline. Billboard. https://www.billboard.com/lists/kanye-west-hate-speech-consequences-timeline/</li>
-    <li>Durkheim, É. (1982). The rules of sociological method (S. Lukes, Ed.). The Free Press. (Original work published 1895)</li>
-    <li>Goffman, E. (1959). The presentation of self in everyday life. Anchor Books.</li>
-    <li>Ritzer, G., & Stepnisky, J. (2021). Sociological theory (10th ed.). SAGE Publications.</li>
-    <li>Ferris, K., & Stein, J. (2020). The real world: An introduction to sociology (7th ed.). W. W. Norton.</li>
-    <li>American Psychiatric Association. (2022). Diagnostic and statistical manual of mental disorders (5th ed., text rev.; DSM-5-TR). American Psychiatric Publishing.</li>
+    <li>Caramanica, J. (2019, October 25). Kanye West is born again. <i>The New York Times.</i> https://www.nytimes.com/2019/10/25/arts/music/kanye-west-jesus-is-king-review.html</li>
+    <li>Greenburg, Z. O. (2020, April 24). Kanye West is now officially a billionaire. <i>Forbes.</i> https://www.forbes.com/sites/zackomalleygreenburg/2020/04/24/kanye-west-is-now-officially-a-billionaire/</li>
+    <li>Hiatt, B. (2007, November 27). Kanye West: The genius and the tragedy. <i>Rolling Stone.</i> https://www.rollingstone.com/music/music-news/kanye-west-the-genius-and-the-tragedy-244089/</li>
+    <li>Holmes, D. (2020, May 13). Kanye West’s fashion influence is bigger than you think. <i>GQ Magazine.</i> https://www.gq.com/story/kanye-west-fashion-influence</li>
+    <li>Abdurraqib, H. (2022). <i>A Little Devil in America: Notes in praise of Black performance.</i> Random House.</li>
+    <li>Netflix. (2022). <i>Jeen-yuhs: A Kanye trilogy</i> [Documentary series]. Creative Control; TIME Studios.</li>
+    <li>Charlemagne Tha God. (2018). Interview with Kanye West [Radio interview]. <i>The Breakfast Club.</i> https://www.youtube.com/watch?v=zxwfDlhJIpw</li>
+    <li>The New York Times. (2019). Kanye West opens up about bipolar disorder. <i>The New York Times.</i> https://www.nytimes.com/2019/10/25/arts/music/kanye-west-jesus-is-king-review.html</li>
+    <li>Rolling Stone. (2022). Kanye West’s controversies: A complete timeline. <i>Rolling Stone.</i> https://www.rollingstone.com/music/music-news/kanye-west-controversies-timeline-1234631427/</li>
+    <li>Billboard Staff. (2022, October 27). Kanye West’s hate speech consequences: A timeline. <i>Billboard.</i> https://www.billboard.com/lists/kanye-west-hate-speech-consequences-timeline/</li>
+    <li>Durkheim, É. (1982). <i>The rules of sociological method</i> (S. Lukes, Ed.). The Free Press. (Original work published 1895)</li>
+    <li>Goffman, E. (1959). <i>The presentation of self in everyday life.</i> Anchor Books.</li>
+    <li>Ritzer, G., & Stepnisky, J. (2021). <i>Sociological theory</i> (10th ed.). SAGE Publications.</li>
+    <li>Ferris, K., & Stein, J. (2020). <i>The real world: An introduction to sociology</i> (7th ed.). W. W. Norton.</li>
+    <li>American Psychiatric Association. (2022). <i>Diagnostic and statistical manual of mental disorders</i> (5th ed., text rev.; DSM-5-TR). American Psychiatric Publishing.</li>
   </ul>
 </section>
-
-<footer>
-  <p>© 2025 Izaia Freyer</p>
-</footer>
-
-</body>
-</html>
