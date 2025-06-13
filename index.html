@@ -6,15 +6,86 @@
 <title>Kanye West RST - By Izaia Freyer</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
 <style>
+  /* Reset & base */
   body {
-    margin: 0 auto;
+    margin: 0;
     font-family: 'Roboto Slab', serif;
     background: linear-gradient(180deg, #cce0ff 0%, #99c2ff 100%);
     color: #0a2140;
     line-height: 1.6;
     padding: 1rem 2rem;
     max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
   }
+  /* Side patterning */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    width: 80px;
+    height: 100vh;
+    background:
+      linear-gradient(45deg, #004080 25%, transparent 25%),
+      linear-gradient(-45deg, #004080 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #0057b7 75%),
+      linear-gradient(-45deg, transparent 75%, #0057b7 75%);
+    background-size: 20px 20px;
+    background-repeat: repeat;
+    z-index: 0;
+    opacity: 0.3;
+  }
+  body::before {
+    left: 0;
+  }
+  body::after {
+    right: 0;
+  }
+
+  /* Navigation bar */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #004080cc;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 12px 12px;
+    z-index: 1000;
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  nav a {
+    color: #cce0ff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: #ffcc00;
+    outline: none;
+  }
+
+  /* Add spacing so content isn't hidden behind nav */
+  body > *:not(nav) {
+    padding-top: 4rem;
+  }
+
+  /* Headings */
   h1, h2, h3 {
     font-weight: 700;
     color: #003366;
@@ -22,8 +93,8 @@
   h1 {
     font-size: 2.8rem;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.2rem;
   }
   h2 {
     font-size: 2rem;
@@ -37,6 +108,23 @@
     margin-top: 1.8rem;
     margin-bottom: 0.8rem;
   }
+  /* Subtitle & author */
+  .subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #0057b7;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .author {
+    text-align: center;
+    font-size: 1rem;
+    color: #004080;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  /* Text */
   p, ul {
     font-size: 1.1rem;
     margin-bottom: 1rem;
@@ -61,14 +149,29 @@
     font-size: 0.9rem;
     color: #004080;
   }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
 </head>
 <body>
 
-<h1>Kanye West</h1>
-<p><strong>Before meltdown</strong></p>
+<nav>
+  <ul>
+    <li><a href="#anthropology">Anthropology</a></li>
+    <li><a href="#psychology">Psychology</a></li>
+    <li><a href="#sociology">Sociology</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
 
-<section>
+<h1>Kanye West</h1>
+<p class="author">by Izaia Freyer</p>
+<p class="subtitle">Psychology, Sociology, and Anthropology RST</p>
+
+<section id="anthropology">
   <h2>Anthropology</h2>
   <p><strong>Examine the cultural background, traditions, rituals, or belief systems that influenced the figure. Apply the following concepts and explain how each one connects to your figure.</strong></p>
 
@@ -95,7 +198,7 @@
   <p>Kanye West shows how an individual can both reflect and shape culture through music, language, family structures, and belief systems. His life and work serve as case studies of how modern identity is formed at the crossing of traditions, innovation, and controversy.</p>
 </section>
 
-<section>
+<section id="psychology">
   <h2>Psychology</h2>
   <p><strong>Analyze internal and external influences on the individual’s behaviour, personality and decision-making. Analyze the before and after Kanye West's mental breakdown and state notable changes.</strong></p>
   <p><strong>Apply some psychological theories such as Freud's psychoanalysis, Jung's analytic psychology, behaviourism, humanism, and developmental psychology.</strong></p>
@@ -108,7 +211,7 @@
   <ul>
     <li>2007: Death of his mother, Donda West</li>
     <li>2016: Hospitalized for a psychiatric emergency (“temporary psychosis due to sleep deprivation and dehydration”).</li>
-    <li>Post 2016: Exhibits increasingly erratic behaviour, including presidential run, antisemitic comments, inappropriate Twitter statements, and public conflicts (Bad choices of Free Will).</li>
+    <li>Post-2016: Exhibits increasingly erratic behaviour, including presidential run, antisemitic comments, inappropriate Twitter statements, and public conflicts (Bad choices of Free Will).</li>
   </ul>
 
   <h3>Internal vs External Influences</h3>
@@ -154,7 +257,7 @@
   <p>While Kanye West’s bipolar disorder diagnosis is public, some behaviours could also indicate symptoms of other disorders or acute episodes, such as psychosis or delusional thinking, especially during manic phases.</p>
 </section>
 
-<section>
+<section id="sociology">
   <h2>Sociology</h2>
   <p><strong>Analyze the social environment, groups, and institutions that influenced the figure.</strong></p>
 
@@ -168,34 +271,31 @@
   <p>Kanye West’s life is a complex interplay of social structures, norms, and individual agency, reflecting broader patterns in contemporary society related to fame, mental health, race, and media.</p>
 </section>
 
-<section class="citations">
+<section id="sources" class="citations">
   <h2>Sources (APA Format)</h2>
   <ul>
-    <li>Freud, S. (1923). <i>The ego and the id</i>.</li>
-    <li>Jung, C. G. (1959). <i>Aion: Researches into the phenomenology of the self</i>. Princeton University Press.</li>
-    <li>Skinner, B. F. (1953). <i>Science and human behavior</i>. Free Press.</li>
-    <li>Maslow, A. H. (1943). A theory of human motivation. <i>Psychological Review, 50</i>(4), 370–396.</li>
-    <li>Rogers, C. R. (1961). <i>On becoming a person</i>. Houghton Mifflin.</li>
-    <li>Erikson, E. H. (1950). <i>Childhood and society</i>. W. W. Norton & Company.</li>
-    <li>Bowlby, J. (1988). <i>A secure base</i>. Basic Books.</li>
-    <li>Durkheim, É. (1982). <i>The rules of sociological method</i>.</li>
-    <li>Goffman, E. (1959). <i>The presentation of self in everyday life</i>.</li>
-    <li>Ritzer, G., & Stepnisky, J. (2021). <i>Sociological theory</i> (10th ed.).</li>
-    <li>Ferris, K., & Stein, J. (2020). <i>The real world: An introduction to sociology</i> (7th ed.).</li>
-    <li>American Psychiatric Association. (2022). <i>DSM-5-TR</i>.</li>
-    <li>Abdurraqib, H. (2022). <i>A little devil in America</i>. Random House.</li>
-    <li>Netflix. (2022). <i>Jeen-yuhs: A Kanye trilogy</i>.</li>
-    <li>Charlemagne Tha God. (2018). <i>The Breakfast Club Interview</i>.</li>
-    <li>Rolling Stone. (2022). <i>Kanye West’s controversies</i>.</li>
-    <li>BBC News. (2009). <i>Kanye West ruins Taylor Swift’s moment</i>.</li>
-    <li>Greenburg, Z. O. (2020). <i>Kanye West is now officially a billionaire</i>. Forbes.</li>
-    <li>Holmes, D. (2020). <i>Kanye West’s fashion influence</i>. GQ.</li>
+    <li>Freud, S. (1923). The ego and the id. In <i>The standard edition of the complete psychological works of Sigmund Freud.</i></li>
+    <li>Jung, C. G. (1959). <i>Aion: Researches into the phenomenology of the self.</i> Princeton University Press.</li>
+    <li>Skinner, B. F. (1953). <i>Science and human behaviour.</i> Free Press.</li>
+    <li>Maslow, A. H. (1943). A theory of human motivation. <i>Psychological Review, 50</i>(4), 370–396. https://doi.org/10.1037/h0054346</li>
+    <li>Rogers, C. R. (1961). <i>On becoming a person: A therapist’s view of psychotherapy.</i> Houghton Mifflin.</li>
+    <li>Erikson, E. H. (1950). <i>Childhood and society.</i> W. W. Norton & Company.</li>
+    <li>Bowlby, J. (1988). <i>A secure base: Parent-child attachment and healthy human development.</i> Basic Books.</li>
+    <li>BBC News. (2009, September 14). Kanye West ruins Taylor Swift's MTV Awards moment. https://news.bbc.co.uk/2/hi/entertainment/8254468.stm</li>
+    <li>Caramanica, J. (2019, October 25). Kanye West is born again. <i>The New York Times.</i> https://www.nytimes.com/2019/10/25/arts/music/kanye-west-jesus-is-king-review.html</li>
+    <li>Greenburg, Z. O. (2020, April 24). Kanye West is now officially a billionaire. <i>Forbes.</i> https://www.forbes.com/sites/zackomalleygreenburg/2020/04/24/kanye-west-is-now-officially-a-billionaire/</li>
+    <li>Hiatt, B. (2007, November 27). Kanye West: The genius and the tragedy. <i>Rolling Stone.</i> https://www.rollingstone.com/music/music-news/kanye-west-the-genius-and-the-tragedy-244089/</li>
+    <li>Holmes, D. (2020, May 13). Kanye West’s fashion influence is bigger than you think. <i>GQ Magazine.</i> https://www.gq.com/story/kanye-west-fashion-influence</li>
+    <li>Abdurraqib, H. (2022). <i>A Little Devil in America: Notes in praise of Black performance.</i> Random House.</li>
+    <li>Netflix. (2022). <i>Jeen-yuhs: A Kanye trilogy</i> [Documentary series]. Creative Control; TIME Studios.</li>
+    <li>Charlemagne Tha God. (2018). Interview with Kanye West [Radio interview]. <i>The Breakfast Club.</i> https://www.youtube.com/watch?v=zxwfDlhJIpw</li>
+    <li>The New York Times. (2019). Kanye West opens up about bipolar disorder. <i>The New York Times.</i> https://www.nytimes.com/2019/10/25/arts/music/kanye-west-jesus-is-king-review.html</li>
+    <li>Rolling Stone. (2022). Kanye West’s controversies: A complete timeline. <i>Rolling Stone.</i> https://www.rollingstone.com/music/music-news/kanye-west-controversies-timeline-1234631427/</li>
+    <li>Billboard Staff. (2022, October 27). Kanye West’s hate speech consequences: A timeline. <i>Billboard.</i> https://www.billboard.com/lists/kanye-west-hate-speech-consequences-timeline/</li>
+    <li>Durkheim, É. (1982). <i>The rules of sociological method</i> (S. Lukes, Ed.). The Free Press. (Original work published 1895)</li>
+    <li>Goffman, E. (1959). <i>The presentation of self in everyday life.</i> Anchor Books.</li>
+    <li>Ritzer, G., & Stepnisky, J. (2021). <i>Sociological theory</i> (10th ed.). SAGE Publications.</li>
+    <li>Ferris, K., & Stein, J. (2020). <i>The real world: An introduction to sociology</i> (7th ed.). W. W. Norton.</li>
+    <li>American Psychiatric Association. (2022). <i>Diagnostic and statistical manual of mental disorders</i> (5th ed., text rev.; DSM-5-TR). American Psychiatric Publishing.</li>
   </ul>
 </section>
-
-<footer>
-  <p>© 2025 Izaia Freyer</p>
-</footer>
-
-</body>
-</html>
